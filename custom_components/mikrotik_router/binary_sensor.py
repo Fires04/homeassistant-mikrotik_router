@@ -306,7 +306,7 @@ class MikrotikControllerBinarySensor(BinarySensorEntity):
             self._type[ATTR_GROUP] = self._ctrl.data["resource"]["board-name"]
 
         info = {
-            "connections": {(DOMAIN, self._ctrl.data["routerboard"]["serial-number"])},
+            "connections": {(DOMAIN, "\""+str(self._ctrl.data["routerboard"]["serial-number"])+"\"")},
             "manufacturer": self._ctrl.data["resource"]["platform"],
             "model": self._ctrl.data["resource"]["board-name"],
             "name": f"{self._inst} {self._type[ATTR_GROUP]}",
@@ -318,7 +318,7 @@ class MikrotikControllerBinarySensor(BinarySensorEntity):
                 (
                     DOMAIN,
                     "serial-number",
-                    self._ctrl.data["routerboard"]["serial-number"],
+                    "\""+str(self._ctrl.data["routerboard"]["serial-number"])+"\"",
                     "sensor",
                     f"{self._inst} {self._type[ATTR_GROUP]}",
                 )
@@ -418,7 +418,7 @@ class MikrotikControllerPPPSecretBinarySensor(MikrotikControllerBinarySensor):
                 (
                     DOMAIN,
                     "serial-number",
-                    self._ctrl.data["routerboard"]["serial-number"],
+                    "\""+str(self._ctrl.data["routerboard"]["serial-number"])+"\"",
                     "switch",
                     "PPP",
                 )
